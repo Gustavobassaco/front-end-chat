@@ -46,18 +46,19 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
 }
 
 input {
-  width: 80%;
+  width: 100%;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 8px;
+  box-sizing: border-box;
 }
 
 button {
-  width: 15%;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -65,9 +66,56 @@ button {
   cursor: pointer;
   background-color: #007bff;
   color: white;
+  min-width: 60px;
 }
 
 button:disabled {
   background-color: #aaa;
   cursor: not-allowed;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+  .App {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  .message {
+    max-width: 90%;
+    font-size: 14px;
+  }
+
+  input {
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 18px;
+  }
+
+  .message {
+    max-width: 100%;
+    font-size: 12px;
+  }
+
+  input {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 12px;
+    padding: 8px;
+  }
 }
