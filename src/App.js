@@ -18,7 +18,7 @@ function App() {
       setConversation([...conversation, { sender: 'user', text: message }]);
 
       // Enviar para o webhook do Dialogflow
-      const res = await fetch('https://seu-webhook.onrender.com/webhook', {
+      const res = await fetch('https://chatbot-wolframalpha.onrender.com/webhook', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -33,22 +33,6 @@ function App() {
       // Adiciona a resposta do Dialogflow ao histórico
       setConversation(prevState => [...prevState, { sender: 'bot', text: dialogflowMessage }]);
 
-      // Enviar para o Flask para tradução (se necessário)
-      const translationRes = await fetch('https://seu-flask-translate.onrender.com/translate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          text: dialogflowMessage,
-          target_lang: 'en',
-        }),
-      });
-      const translation = await translationRes.json();
-      const translatedText = translation.translated_text || dialogflowMessage;
-
-      // Adiciona a tradução ao histórico (se houver)
-      setConversation(prevState => [...prevState, { sender: 'bot', text: `Translation: ${translatedText}` }]);
     } catch (error) {
       console.error('Erro:', error);
       setConversation(prevState => [...prevState, { sender: 'bot', text: 'Desculpe, ocorreu um erro.' }]);
@@ -67,7 +51,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Chatbot com Dialogflow e Tradução</h1>
+      <h1>Chatbot com Dialogflow</h1>
 
       <div className="chat-box">
         {conversation.map((msg, index) => (
